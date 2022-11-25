@@ -2,21 +2,39 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Signup = () => {
     const [data, setData] = useState("");
-    const {createUser} = useContext(AuthContext)
+    const { createUser, updateUser } = useContext(AuthContext)
+    const [signUpError, setSignUpError] = useState('')
 
     const { register, formState: { errors }, handleSubmit } = useForm();
     // console.log(errors);
 
+
     const handleSignup = (data) => {
+        setSignUpError('')
         createUser(data.email, data.password)
-        .then(result => {
-            const user = result.user;
-            console.log(user)
-        })
-        .catch(err => console.error(err))
+            .then(result => {
+                const user = result.user;
+                toast('User Created Successfully')
+                // console.log(user)
+
+                const userInfo = {
+                    displayName: data.name,
+                    email: data.email,
+                    userCategory: data.userCategory,
+                }
+                updateUser(userInfo)
+                    .then(() => {})
+                    .catch(error => console.error(error))
+
+            })
+            .catch(err => {
+                console.error(err);
+                setSignUpError(err.message)
+            })
     }
 
 
@@ -45,9 +63,10 @@ const Signup = () => {
 
                     <div>
                         <label className="label"><span className="label-text">Password</span></label>
-                        <input type="password"  {...register("password", { required: "Password is required",
-                            minLength: {value: 6, message: 'Password must be 6 characters long'},
-                         })} className='input input-bordered w-full ' />
+                        <input type="password"  {...register("password", {
+                            required: "Password is required",
+                            minLength: { value: 6, message: 'Password must be 6 characters long' },
+                        })} className='input input-bordered w-full ' />
 
                         <label className="label"><span className="label-text">Forget Password?</span></label>
                         {errors.password && <p className='text-red-600 text-left' role="alert">{errors.password?.message}</p>}
@@ -60,8 +79,10 @@ const Signup = () => {
                             <option value="seller">Seller</option>
                         </select>
                     </div>
-                    <p>{data}</p>
+                    {signUpError && <p className='text-red-600 text-left'>{signUpError}</p>}
+
                     <input className='btn bg-red-700 w-full mt-3' type="submit" />
+
                 </form>
                 <p className='mt-4 text-md font-semibold text-left mb-6'>Already have an account? <Link className='text-red-700' to='/login'>Login</Link></p>
             </div>

@@ -1,0 +1,155 @@
+[
+    {
+        "name":"Harley-Davidson Sportster S",
+        "category_id": 1,
+        "category":"Cruiser",
+        "cc":"1250cc",
+        "hp":"121HP",
+        "originalPrice": "20000",
+        "resalePrice": "13000",
+        "conditionType": "good",
+        "mobileNumber": "123456789",
+        "location": "0 State, New York",
+        "description": "This bikes han no problem. I want to buy new, that's why I want to sell this",
+        "buyYear": "2020",
+        "postDate": "2022",
+        "img": "https://i.ibb.co/6Ht1mZH/Harley-Davidson-Sportster-S-scaled-e1627292489506.jpg"
+
+    },
+    {
+        "name":"Harley-Davidson Sportster S",
+        "category_id": 1,
+        "category":"Cruiser",
+        "cc":"1250cc",
+        "hp":"121HP",
+        "originalPrice": "20000",
+        "resalePrice": "13000",
+        "conditionType": "good",
+        "mobileNumber": "123456789",
+        "location": "0 State, New York",
+        "description": "This bikes han no problem. I want to buy new, that's why I want to sell this",
+        "buyYear": "2020",
+        "postDate": "2022",
+        "img": "https://i.ibb.co/6Ht1mZH/Harley-Davidson-Sportster-S-scaled-e1627292489506.jpg"
+
+    },
+    {
+        "name":"Harley-Davidson Sportster S",
+        "category_id": 1,
+        "category":"Cruiser",
+        "cc":"1250cc",
+        "hp":"121HP",
+        "originalPrice": "20000",
+        "resalePrice": "13000",
+        "conditionType": "good",
+        "mobileNumber": "123456789",
+        "location": "0 State, New York",
+        "description": "This bikes han no problem. I want to buy new, that's why I want to sell this",
+        "buyYear": "2020",
+        "postDate": "2022",
+        "img": "https://i.ibb.co/6Ht1mZH/Harley-Davidson-Sportster-S-scaled-e1627292489506.jpg"
+
+    },
+    {
+        "name":"Harley-Davidson Sportster S",
+        "category_id": 2,
+        "category":"Sports",
+        "cc":"1250cc",
+        "hp":"121HP",
+        "originalPrice": "20000",
+        "resalePrice": "13000",
+        "conditionType": "good",
+        "mobileNumber": "123456789",
+        "location": "0 State, New York",
+        "description": "This bikes han no problem. I want to buy new, that's why I want to sell this",
+        "buyYear": "2020",
+        "postDate": "2022",
+        "img": "https://i.ibb.co/6Ht1mZH/Harley-Davidson-Sportster-S-scaled-e1627292489506.jpg"
+
+    },
+    {
+        "name":"Harley-Davidson Sportster S",
+        "category_id": 2,
+        "category":"Sports",
+        "cc":"1250cc",
+        "hp":"121HP",
+        "originalPrice": "20000",
+        "resalePrice": "13000",
+        "conditionType": "good",
+        "mobileNumber": "123456789",
+        "location": "0 State, New York",
+        "description": "This bikes han no problem. I want to buy new, that's why I want to sell this",
+        "buyYear": "2020",
+        "postDate": "2022",
+        "img": "https://i.ibb.co/6Ht1mZH/Harley-Davidson-Sportster-S-scaled-e1627292489506.jpg"
+
+    },
+    {
+        "name":"Harley-Davidson Sportster S",
+        "category_id": 2,
+        "category":"Sports",
+        "cc":"1250cc",
+        "hp":"121HP",
+        "originalPrice": "20000",
+        "resalePrice": "13000",
+        "conditionType": "good",
+        "mobileNumber": "123456789",
+        "location": "0 State, New York",
+        "description": "This bikes han no problem. I want to buy new, that's why I want to sell this",
+        "buyYear": "2020",
+        "postDate": "2022",
+        "img": "https://i.ibb.co/6Ht1mZH/Harley-Davidson-Sportster-S-scaled-e1627292489506.jpg"
+
+    },
+    {
+        "name":"Harley-Davidson Sportster S",
+        "category_id": 3,
+        "category":"Off-Road",
+        "cc":"1250cc",
+        "hp":"121HP",
+        "originalPrice": "20000",
+        "resalePrice": "13000",
+        "conditionType": "good",
+        "mobileNumber": "123456789",
+        "location": "0 State, New York",
+        "description": "This bikes han no problem. I want to buy new, that's why I want to sell this",
+        "buyYear": "2020",
+        "postDate": "2022",
+        "img": "https://i.ibb.co/6Ht1mZH/Harley-Davidson-Sportster-S-scaled-e1627292489506.jpg"
+
+    },
+    {
+        "name":"Harley-Davidson Sportster S",
+        "category_id": 3,
+        "category":"Off-Road",
+        "cc":"1250cc",
+        "hp":"121HP",
+        "originalPrice": "20000",
+        "resalePrice": "13000",
+        "conditionType": "good",
+        "mobileNumber": "123456789",
+        "location": "0 State, New York",
+        "description": "This bikes han no problem. I want to buy new, that's why I want to sell this",
+        "buyYear": "2020",
+        "postDate": "2022",
+        "img": "https://i.ibb.co/6Ht1mZH/Harley-Davidson-Sportster-S-scaled-e1627292489506.jpg"
+
+    },
+    {
+        "name":"Harley-Davidson Sportster S",
+        "category_id": 3,
+        "category":"Off-Road",
+        "cc":"1250cc",
+        "hp":"121HP",
+        "originalPrice": "20000",
+        "resalePrice": "13000",
+        "conditionType": "good",
+        "mobileNumber": "123456789",
+        "location": "0 State, New York",
+        "description": "This bikes han no problem. I want to buy new, that's why I want to sell this",
+        "buyYear": "2020",
+        "postDate": "2022",
+        "img": "https://i.ibb.co/6Ht1mZH/Harley-Davidson-Sportster-S-scaled-e1627292489506.jpg"
+
+    }
+]
