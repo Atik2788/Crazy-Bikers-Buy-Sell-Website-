@@ -42,6 +42,7 @@ const Signup = () => {
         <div className='lg:w-2/4 mx-auto lg:my-40 px-3 lg:px-0 md:px-6 my-10 text-center lg:flex justify-center'>
             <div className='shadow-xl lg:w-[500px]  lg:p-6 p-3 '>
                 <p className='text-5xl mb-5'>Sing Up</p>
+                
                 <form className='grid grid-cols-1 gap-3' onSubmit={handleSubmit(handleSignup)}>
 
                     <div>

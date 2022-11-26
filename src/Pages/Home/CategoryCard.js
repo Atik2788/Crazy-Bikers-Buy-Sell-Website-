@@ -12,6 +12,7 @@ const CategoryCard = ({ bikesCategory }) => {
                     <div className="hero-content text-center text-neutral-content">
                         <div className="max-w-md">
                             <h1 className="mb-5 text-5xl font-bold">{categoryName}</h1>
+                            <h1 className="mb-5 text-xl opacity-75 bg-red-700 text-white w-36 mx-auto btn-sm font-bold">See More</h1>
                         </div>
                     </div>
                 </div>

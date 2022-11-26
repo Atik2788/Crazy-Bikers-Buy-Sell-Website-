@@ -18,8 +18,8 @@ const Category = () => {
 
 
     return (
-        <div className='mt-28'>
-            <h2 className='text-center text-5xl font-bold text-red-600 mb-10'>Go With Your Craze..</h2>
+        <div className='lg:mt-28 mt-10'>
+            <h2 className='text-center lg:text-5xl font-bold text-3xl text-red-700 mb-6 lg:mb-10'>Go With Your Craze..</h2>
 
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10'>
                 {
