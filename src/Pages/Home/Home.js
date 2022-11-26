@@ -1,6 +1,7 @@
 import React from 'react';
 import About from './About';
-import Advertise from './Advertise';
+import Advertise from './Advertise/Advertise';
+
 import Banner from './Banner';
 import Category from './Category';
 
