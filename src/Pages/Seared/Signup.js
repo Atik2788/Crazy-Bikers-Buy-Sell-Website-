@@ -72,14 +72,9 @@ const Signup = () => {
 
                     <div>
                         <label className="label"><span className="label-text">Name</span></label>
-                        <input {...register("name", { required: "Name is required" })} type="name" placeholder="Name" className="input input-bordered w-full" />
+                        <input {...register("name", { required: "Name is required" })} type="text" placeholder="Name" className="input input-bordered w-full" />
                         {errors.name && <p className='text-red-600 text-left' role="alert">{errors.name?.message}</p>}
                     </div>
-                    {/* 
-                    <div>
-                        <label className="label"><span className="label-text">Image</span></label>
-                        <input {...register("image", {required:true})} type="image" placeholder="Image" className="input input-bordered w-full" />
-                    </div> */}
 
                     <div>
                         <label className="label"><span className="label-text">Email</span></label>

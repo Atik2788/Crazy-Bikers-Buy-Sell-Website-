@@ -1,12 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
+
+import { DayPicker } from 'react-day-picker';
+import { format } from 'date-fns';
 
 const BookingModal = ({ bikeInfo, setBikeInfo }) => {
     const { user } = useContext(AuthContext)
     const { name, resalePrice, img } = bikeInfo;
     // console.log(bikeInfo)
     // console.log(user)
+
+    const [selectedDate, setSelectedDate] = useState(new Date())
 
 
     const handleBooking = event => {
@@ -73,7 +78,7 @@ const BookingModal = ({ bikeInfo, setBikeInfo }) => {
 
                     <form onSubmit={handleBooking} className='grid grid-cols-1 gap-3 mt-10'>
                         <input name='name' type="text" defaultValue={user?.displayName} readOnly disabled placeholder="Your Name" className="input input-bordered w-full" />
-                        <input name='date' type="date" defaultValue={(new Date())} readOnly disabled placeholder="Email Address" className="input input-bordered w-full" />
+                        <input name='date' type="text"  readOnly disabled defaultValue={format(selectedDate, 'PP')} placeholder="Email Address" className="input input-bordered w-full" />
                         <input name='email' type="email" defaultValue={user?.email} readOnly disabled placeholder="Email Address" className="input input-bordered w-full" />
                         <input name='address' required type="text" placeholder="Address" className="input input-bordered w-full" />
                         <input name='meetLocation' required type="text" placeholder="Meet Location" className="input input-bordered w-full" />
