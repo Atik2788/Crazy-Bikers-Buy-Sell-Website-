@@ -3,12 +3,14 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
 
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const BookingModal = ({ bikeInfo, setBikeInfo }) => {
     const { user } = useContext(AuthContext)
     const { name, resalePrice, img, _id } = bikeInfo;
-    // console.log(bikeInfo)
-    // console.log(user)
+
+    const navigate = useNavigate()
+
 
     const [selectedDate, setSelectedDate] = useState(new Date())
 
@@ -26,7 +28,9 @@ const BookingModal = ({ bikeInfo, setBikeInfo }) => {
             // body: JSON.stringify(_id)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                // console.log(data)
+            })
 
         const form = event.target;
         const buyerName = form.name.value;
@@ -48,7 +52,7 @@ const BookingModal = ({ bikeInfo, setBikeInfo }) => {
             resalePrice,
             img
         }
-        console.log(booking);
+        // console.log(booking);
 
         // post booking in database
         fetch('http://localhost:5000/bookings', {
@@ -66,6 +70,7 @@ const BookingModal = ({ bikeInfo, setBikeInfo }) => {
                     setBikeInfo(null)
                     toast.success('Booking Confirm!!')
                     // refetch()
+                    navigate('/dashboardLayout/myOrders')
                 }
                 else {
                     toast.error(data.message)

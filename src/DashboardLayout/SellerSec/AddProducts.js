@@ -49,7 +49,7 @@ const AddProducts = () => {
 
     const addBike = (bikeInfo) => {
         const bikeData = bikeInfo
-        console.log(bikeData)
+        // console.log(bikeData)
 
         fetch('http://localhost:5000/bikes', {
             method: 'POST',

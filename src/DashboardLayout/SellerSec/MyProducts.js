@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider';
 
 const MyProducts = () => {
@@ -9,7 +10,7 @@ const MyProducts = () => {
     const url = `http://localhost:5000/bikesemail?email=${user?.email}`
     // const urt = `http://localhost:5000/bookings?email=${user?.email}`
 
-    const { data: bikes = [] } = useQuery({
+    const { data: bikes = [], refetch, isLoading } = useQuery({
         queryKey: ['bikes', user?.email],
         queryFn: async () => {
             const res = await fetch(url);
@@ -19,9 +20,10 @@ const MyProducts = () => {
     })
 
 
-    const handleAdvertise = () => {
-        fetch('http://localhost:5000/bikes', {
-            method: 'POST',
+    const handleAdvertise = (id) => {
+
+        fetch(`http://localhost:5000/bikesAdvertise/${id}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
@@ -29,11 +31,35 @@ const MyProducts = () => {
         })
         .then(res => res.json())
         .then(data =>{
-            console.log(data)
+            if(data.acknowledged){
+                toast('Add Advertise Successfully!!')
+                refetch()
+            }
+            else{
+                toast.error(data.message)
+            }
         })
     }
 
 
+
+    const handleDeleteProduct = (bike) => {
+        // console.log('delete')
+
+        fetch(`http://localhost:5000/bikes/${bike._id}`, {
+            method: 'DELETE',
+            headers: {
+
+            }
+        })
+        .then(res=>res.json())
+        .then(data =>{
+            // console.log(data)
+            if(data.deletedCount > 0){
+                refetch();
+            }
+        })
+    }
 
 
     // console.log(bikes)
@@ -73,20 +99,20 @@ const MyProducts = () => {
 
                                     <th>{bike.name}</th>
                                     <th>${bike.resalePrice}</th>
-                                    { bike?.status !== 'sold' ?
+                                    { bike?.status !== 'booked' ?
                                     <th>Available</th>
                                     :
-                                    <th>Sold</th>
+                                    <th>Booked</th>
 
                                     }
 
-                                    { bike?.status !== 'sold' && bike?.status !== 'booked' ?
-                                    <th><button className="btn bg-green-700 btn-xs">Advertise</button></th>
+                                    { bike?.status === 'advertised' || bike?.status === 'booked' ?
+                                    <th><button className="btn btn-disabled btn-xs">Advertised</button></th>
                                     :
-                                    <th><button className="btn btn-disabled btn-xs">Booked</button></th>
-
+                                    <th><button onClick={() => handleAdvertise(bike._id)} className="btn bg-green-700 btn-xs">Advertise</button></th>
                                     }
-                                    <th><button className="btn bg-red-700 px-4 outline-none btn-xs">X</button></th>
+
+                                    <th><button onClick={() => handleDeleteProduct(bike)} className="btn bg-red-700 px-4 outline-none btn-xs">X</button></th>
                                 </tr>
 
                             )
