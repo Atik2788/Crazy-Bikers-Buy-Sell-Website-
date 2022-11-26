@@ -40,6 +40,7 @@ const Advertise = () => {
                         <AdvertiseModal
                         bikeInfo={bikeInfo}
                         setBikeInfo={setBikeInfo}
+                        refetch={refetch}
                     ></AdvertiseModal>
 
             }

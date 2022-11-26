@@ -56,6 +56,7 @@ const MyProducts = () => {
         .then(data =>{
             // console.log(data)
             if(data.deletedCount > 0){
+                toast(`Delete ${bike.name} successfully!!`)
                 refetch();
             }
         })
