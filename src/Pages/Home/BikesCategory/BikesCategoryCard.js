@@ -1,11 +1,10 @@
+import { format } from 'date-fns';
 import React, { useState } from 'react';
 
 const BikesCategoryCard = ({ bike, setBikeInfo }) => {
     const { category, buyYear, postDate, cc, conditionType,
         description, hp, img, location, mobileNumber,
-        name, originalPrice, resalePrice, sellersName, yearsOfUse } = bike;
-
-
+        name, originalPrice, resalePrice, sellersName, yearsOfUse, status } = bike;
 
 
 
@@ -30,18 +29,24 @@ const BikesCategoryCard = ({ bike, setBikeInfo }) => {
                         </div>
 
                         <div className='grid grid-cols-1 gap-2'>
-                            <h4 className="text-sm font-bold">Buy in {buyYear}</h4>
+                            <h4 className="text-sm font-bold">Buy in: {buyYear}</h4>
                             <h4 className="text-sm font-bold">Buying Price: ${originalPrice}</h4>
-                            <h4 className="text-sm font-bold">Location {location}</h4>
+                            <h4 className="text-sm font-bold">Location: {location}</h4>
                             <h4 className="text-sm font-bold">Post Date: {postDate}</h4>
                         </div>
                     </div>
 
-                    <label htmlFor="booking-modal"
-                        className="btn bg-red-700 btn-sm mt-3 hover:px-10"
-                        onClick={() => setBikeInfo(bike)}>Book Now
-                    </label>
-
+                    {status !== 'booked' ?
+                        <label htmlFor="booking-modal"
+                            className="btn bg-red-700 btn-sm mt-3 hover:px-10"
+                            onClick={() => setBikeInfo(bike)}>Book Now
+                        </label>
+                        :
+                        <label
+                            className="btn btn-disabled btn-sm mt-3"
+                            >Booked
+                        </label>
+                    }
                 </div>
             </div>
 
@@ -50,3 +55,4 @@ const BikesCategoryCard = ({ bike, setBikeInfo }) => {
 };
 
 export default BikesCategoryCard;
+

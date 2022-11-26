@@ -1,11 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthProvider';
-import MyProductCard from './MyProductCard';
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext)
-    console.log(user);
+    // console.log(user);
 
     const url = `http://localhost:5000/bikesemail?email=${user?.email}`
     // const urt = `http://localhost:5000/bookings?email=${user?.email}`
@@ -18,7 +17,26 @@ const MyProducts = () => {
             return data;
         }
     })
-    console.log(bikes)
+
+
+    const handleAdvertise = () => {
+        fetch('http://localhost:5000/bikes', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify()
+        })
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data)
+        })
+    }
+
+
+
+
+    // console.log(bikes)
 
     return (
         <div className='mt-10'>
@@ -32,6 +50,7 @@ const MyProducts = () => {
                             <th>Bike Name</th>
                             <th>Price</th>
                             <th>Status</th>
+                            <th>Advertise</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -54,7 +73,19 @@ const MyProducts = () => {
 
                                     <th>{bike.name}</th>
                                     <th>${bike.resalePrice}</th>
-                                    <th><button className="btn btn-ghost btn-xs">{bike.status}</button></th>
+                                    { bike?.status !== 'sold' ?
+                                    <th>Available</th>
+                                    :
+                                    <th>Sold</th>
+
+                                    }
+
+                                    { bike?.status !== 'sold' && bike?.status !== 'booked' ?
+                                    <th><button className="btn bg-green-700 btn-xs">Advertise</button></th>
+                                    :
+                                    <th><button className="btn btn-disabled btn-xs">Booked</button></th>
+
+                                    }
                                     <th><button className="btn bg-red-700 px-4 outline-none btn-xs">X</button></th>
                                 </tr>
 

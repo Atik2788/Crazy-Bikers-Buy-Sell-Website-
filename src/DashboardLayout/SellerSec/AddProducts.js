@@ -1,19 +1,19 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider';
 
-import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
 const AddProducts = () => {
 
     const { user } = useContext(AuthContext)
-    const [selectedDate, setSelectedDate] = useState(new Date())
+    const current = new Date();
+    const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+
+
     const navigate = useNavigate();
-
-
     const { register, handleSubmit, formState: { errors } } = useForm();
 
 
@@ -24,7 +24,7 @@ const AddProducts = () => {
             sellersName: user.displayName,
             email: user.email,
             mobileNumber: data.mobileNumber,
-            postDate: selectedDate,
+            postDate: date,
             name: data.name,
             img: data.img,
             location: data.location,
@@ -34,7 +34,7 @@ const AddProducts = () => {
             yearsOfUse: data.yearsOfUse,
             originalPrice: data.originalPrice,
             resalePrice: data.resalePrice,
-            conditionType: data.conditionType,
+            conditionType: data.condition,
 
         }
 
@@ -92,31 +92,31 @@ const AddProducts = () => {
 
                             <div>
                                 <label className="label"><span className="label-text">Seller's Mobile Number</span></label>
-                                <input {...register("mobileNumber", { required: "Mobile Number is required" })} type="text" placeholder="Mobile Number" className="input input-bordered w-full" />
+                                <input {...register("mobileNumber", { required: "Mobile Number is required" })} defaultValue='01111111' type="text" placeholder="Mobile Number" className="input input-bordered w-full" />
                                 {errors.mobileNumber && <p className='text-red-600 text-left' role="alert">{errors.mobileNumber?.message}</p>}
                             </div>
 
                             <div>
                                 <label className="label"><span className="label-text">Post's Date</span></label>
-                                <input {...register("postDate")} disabled defaultValue={format(selectedDate, 'PP')} type="text" className="input input-bordered w-full" />
+                                <input {...register("date")} disabled defaultValue={date} type="text" className="input input-bordered w-full" />
                             </div>
 
                             <div>
                                 <label className="label"><span className="label-text">Bike Name</span></label>
-                                <input {...register("name", { required: "Bike Name is required" })} type="text" placeholder="Bike Name" className="input input-bordered w-full" />
+                                <input {...register("name", { required: "Bike Name is required" })} type="text" defaultValue='KTM Duke' placeholder="Bike Name" className="input input-bordered w-full" />
                                 {errors.name && <p className='text-red-600 text-left' role="alert">{errors.name?.message}</p>}
                             </div>
 
                             <div>
                                 <label className="label"><span className="label-text">Bike Image URL</span></label>
-                                <input {...register("img", { required: "Bike Name is required" })} type="text" placeholder="Bike Img URL" className="input input-bordered w-full" />
+                                <input {...register("img", { required: "Bike Name is required" })} type="text" defaultValue='https://www.bforbiker.com/wp-content/uploads/2022/09/KTM-125-Duke-img.jpg' placeholder="Bike Img URL" className="input input-bordered w-full" />
                                 {errors.img && <p className='text-red-600 text-left' role="alert">{errors.img?.message}</p>}
                             </div>
 
                             <div>
                                 <label className="label"><span className="label-text">Location</span></label>
                                 <input type="text"  {...register("location", { required: "Location is required" })}
-                                    className='input input-bordered w-full ' placeholder='Location' />
+                                    className='input input-bordered w-full' defaultValue='Dhaka' placeholder='Location' />
                                 {errors.location && <p className='text-red-600 text-left' role="alert">{errors.location?.message}</p>}
                             </div>
 
@@ -128,8 +128,8 @@ const AddProducts = () => {
                             <div>
                                 <label className="label"><span className="label-text">Select Category</span></label>
                                 <select className=' input input-bordered w-full' {...register("category", { required: true })}>
-                                    <option value="Cruiser">Cruiser</option>
                                     <option value="Sports">Sports</option>
+                                    <option value="Cruiser">Cruiser</option>
                                     <option value="Off-Road">Off-Road</option>
                                 </select>
                             </div>
@@ -137,44 +137,53 @@ const AddProducts = () => {
                             <div>
                                 <label className="label"><span className="label-text">Engine CC</span></label>
                                 <input type="text"  {...register("cc", { required: "Engine CC is required" })}
-                                    className='input input-bordered w-full ' placeholder='Engine CC' />
+                                    className='input input-bordered w-full ' defaultValue='165' placeholder='Engine CC' />
                                 {errors.cc && <p className='text-red-600 text-left' role="alert">{errors.cc?.message}</p>}
                             </div>
 
                             <div>
                                 <label className="label"><span className="label-text">Year of buy</span></label>
                                 <input type="text"  {...register("buyYear", { required: "Year of buy is required" })}
-                                    className='input input-bordered w-full ' placeholder='Year of buy' />
+                                    className='input input-bordered w-full ' defaultValue='2020' placeholder='Year of buy' />
                                 {errors.buyYear && <p className='text-red-600 text-left' role="alert">{errors.buyYear?.message}</p>}
                             </div>
 
                             <div>
                                 <label className="label"><span className="label-text">Years Of Use</span></label>
                                 <input type="text"  {...register("yearsOfUse", { required: "Years Of Use is required" })}
-                                    className='input input-bordered w-full ' placeholder='Years Of Use' />
+                                    className='input input-bordered w-full' defaultValue='2' placeholder='Years Of Use' />
                                 {errors.yearsOfUse && <p className='text-red-600 text-left' role="alert">{errors.yearsOfUse?.message}</p>}
                             </div>
 
                             <div>
                                 <label className="label"><span className="label-text">Original Price</span></label>
                                 <input type="text"  {...register("originalPrice", { required: "Original Price is required" })}
-                                    className='input input-bordered w-full ' placeholder='Original Price' />
+                                    className='input input-bordered w-full ' defaultValue='4000' placeholder='Original Price' />
                                 {errors.originalPrice && <p className='text-red-600 text-left' role="alert">{errors.originalPrice?.message}</p>}
                             </div>
 
                             <div>
                                 <label className="label"><span className="label-text">Resale Price</span></label>
                                 <input type="text"  {...register("resalePrice", { required: "Resale Price is required" })}
-                                    className='input input-bordered w-full ' placeholder='Resale Price' />
+                                    className='input input-bordered w-full' defaultValue='2000' placeholder='Resale Price' />
                                 {errors.resalePrice && <p className='text-red-600 text-left' role="alert">{errors.resalePrice?.message}</p>}
                             </div>
 
                             <div>
                                 <label className="label"><span className="label-text">Condition</span></label>
-                                <input type="text"  {...register("conditionType", { required: "Condition is required" })}
-                                    className='input input-bordered w-full ' placeholder='Condition' />
-                                {errors.conditionType && <p className='text-red-600 text-left' role="alert">{errors.conditionType?.message}</p>}
+                                <select className=' input input-bordered w-full' {...register("condition")}>
+                                    <option value="Excellent">Excellent</option>
+                                    <option value="Good">Good</option>
+                                    <option value="It's Ok">It's Ok</option>
+                                </select>
                             </div>
+
+                            {/* <div>
+                                <label className="label"><span className="label-text">Condition</span></label>
+                                <input type="text"  {...register("conditionType", { required: "Condition is required" })}
+                                    className='input input-bordered w-full ' defaultValue='good' placeholder='Condition' />
+                                {errors.conditionType && <p className='text-red-600 text-left' role="alert">{errors.conditionType?.message}</p>}
+                            </div> */}
 
                         </div>
                     </div>

@@ -14,10 +14,10 @@ const Navbar = () => {
 
     const menuItems = <React.Fragment>
         <li><Link className='lg:text-white' to='/'>Home</Link></li>
+        <li><Link className='lg:text-white' to='/dashboardLayout'>Dashboard</Link></li>
         <li><Link className='lg:text-white' to='/blog'>Blog</Link></li>
         {user?.uid ?
             <>
-                <li><Link className='lg:text-white' to='/dashboardLayout'>Dashboard</Link></li>
                 <li className='lg:text-white' onClick={handleSignOut}><Link>Sign Out</Link></li>
             </>
             :
