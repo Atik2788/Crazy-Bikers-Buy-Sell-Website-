@@ -38,7 +38,7 @@ const MyOrders = () => {
 
                         {
                             bookings?.map((booking, i) =>
-                                    <tr>
+                                    <tr key={booking._id}>
                                     <th>{i+1}</th>
                                         <td>
                                             <div className="flex items-center space-x-3">

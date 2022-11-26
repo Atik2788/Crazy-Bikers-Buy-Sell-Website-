@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -8,33 +8,58 @@ const Signup = () => {
     const [data, setData] = useState("");
     const { createUser, updateUser } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('')
+    const navigate = useNavigate();
 
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors }} = useForm();
     // console.log(errors);
 
 
     const handleSignup = (data) => {
         setSignUpError('')
+
         createUser(data.email, data.password)
+
             .then(result => {
                 const user = result.user;
-                toast('User Created Successfully')
                 // console.log(user)
+                toast('User Created Successfully')
 
                 const userInfo = {
                     displayName: data.name,
                     email: data.email,
                     role: data.role,
                 }
+
                 updateUser(userInfo)
-                    .then(() => {})
+                    .then(() => {
+                        saveUser(data.name, data.email, data.role)
+                    })
                     .catch(error => console.error(error))
 
             })
-            .catch(err => {
-                console.error(err);
+
+            .catch(err =>  {
                 setSignUpError(err.message)
+                console.error(err)
             })
+    }
+
+    
+    const saveUser = (displayName, email, role) => {
+        const user = { displayName, email, role }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                navigate('/')
+            })
+
     }
 
 
@@ -42,7 +67,7 @@ const Signup = () => {
         <div className='lg:w-2/4 mx-auto lg:my-40 px-3 lg:px-0 md:px-6 my-10 text-center lg:flex justify-center'>
             <div className='shadow-xl lg:w-[500px]  lg:p-6 p-3 '>
                 <p className='text-5xl mb-5'>Sing Up</p>
-                
+
                 <form className='grid grid-cols-1 gap-3' onSubmit={handleSubmit(handleSignup)}>
 
                     <div>
