@@ -24,7 +24,7 @@ const Signup = () => {
                 const userInfo = {
                     displayName: data.name,
                     email: data.email,
-                    userCategory: data.userCategory,
+                    role: data.role,
                 }
                 updateUser(userInfo)
                     .then(() => {})
@@ -75,7 +75,7 @@ const Signup = () => {
 
                     <div>
                         <label className="label"><span className="label-text">Select Purpose</span></label>
-                        <select className=' input input-bordered w-full' {...register("userCategory", { required: true })}>
+                        <select className=' input input-bordered w-full' {...register("role", { required: true })}>
                             <option value="buyer">Buyer</option>
                             <option value="seller">Seller</option>
                         </select>

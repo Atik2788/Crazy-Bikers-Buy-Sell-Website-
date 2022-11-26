@@ -4,7 +4,7 @@ import { AuthContext } from '../../../context/AuthProvider';
 
 const BookingModal = ({ bikeInfo, setBikeInfo }) => {
     const { user } = useContext(AuthContext)
-    const { name, resalePrice } = bikeInfo;
+    const { name, resalePrice, img } = bikeInfo;
     // console.log(bikeInfo)
     // console.log(user)
 
@@ -30,10 +30,11 @@ const BookingModal = ({ bikeInfo, setBikeInfo }) => {
             meetLocation,
             address,
             phone,
-            resalePrice
+            resalePrice,
+            img
         }
         console.log(booking);
-        setBikeInfo(null)
+
 
 
         fetch('http://localhost:5000/bookings', {
@@ -48,7 +49,7 @@ const BookingModal = ({ bikeInfo, setBikeInfo }) => {
                 console.log(data)
 
                if(data.acknowledged){
-                // setTreatment(null)
+                setBikeInfo(null)
                 toast.success('Booking Confirm!!')
                 // refetch()
                }
