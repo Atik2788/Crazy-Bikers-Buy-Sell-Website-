@@ -6,7 +6,7 @@ const Category = () => {
 
 
     const { data: bikesCategories = [], refetch } = useQuery({
-        queryKey: ["bikes"],
+        queryKey: ["category"],
         queryFn: async () => {
             const res = await fetch("http://localhost:5000/category")
             const data = await res.json();
