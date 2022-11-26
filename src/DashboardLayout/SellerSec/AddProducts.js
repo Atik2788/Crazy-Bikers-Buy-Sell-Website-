@@ -5,11 +5,14 @@ import { AuthContext } from '../../context/AuthProvider';
 
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const AddProducts = () => {
 
     const { user } = useContext(AuthContext)
     const [selectedDate, setSelectedDate] = useState(new Date())
+    const navigate = useNavigate();
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -18,24 +21,44 @@ const AddProducts = () => {
         // console.log(data);
 
         const bikeInfo = {
-            sellersName: data.sellersName,
-            email: data.email,
+            sellersName: user.displayName,
+            email: user.email,
             mobileNumber: data.mobileNumber,
-            email: data.email,
-            email: data.email,
-            email: data.email,
-            email: data.email,
-            email: data.email,
-            email: data.email,
-            email: data.email,
-            email: data.email,
-            email: data.email,
-            email: data.email,
+            postDate: selectedDate,
+            name: data.name,
+            img: data.img,
+            location: data.location,
+            category: data.category,
+            cc: data.cc,
+            buyYear: data.buyYear,
+            yearsOfUse: data.yearsOfUse,
+            originalPrice: data.originalPrice,
+            resalePrice: data.resalePrice,
+            conditionType: data.conditionType,
 
-        } 
-        console.log(bikeInfo)
+        }
+
+        addBike(bikeInfo)
+        toast('User Created Successfully')
+        // reset.form()
+        navigate('/dashboardLayout/myproducts')
+
+        // console.log(bikeInfo)
     }
 
+
+    const addBike = (bikeInfo) => {
+        const bikeData = bikeInfo
+        console.log(bikeData)
+
+        fetch('http://localhost:5000/bikes', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bikeData)
+        })
+    }
 
 
 
@@ -98,8 +121,6 @@ const AddProducts = () => {
                             </div>
 
                         </div>
-
-
 
 
                         <div>

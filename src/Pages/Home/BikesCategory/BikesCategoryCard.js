@@ -18,22 +18,24 @@ const BikesCategoryCard = ({ bike, setBikeInfo }) => {
                     <h2 className="card-title text-red-700 fond-bold">{name}</h2>
                     <h2 className="text-xl font-bold">Features:</h2>
 
-                    <h4 className="text-md font-bold">Price: ${resalePrice}</h4>
+                    <h4 className="text-md font-bold mb-3">Price: ${resalePrice}</h4>
                     <div className='grid grid-cols-2 gap-4'>
-                        <div>
+                        <div className='grid grid-cols-1 gap-2'>
                             <h4 className="text-sm font-bold">Engine: {cc} cc</h4>
                             <h4 className="text-sm font-bold">Condition: {conditionType}</h4>
                             <h4 className="text-sm font-bold">Year of Use: {yearsOfUse}</h4>
+                            <h4 className="text-sm font-bold">Seller Name: {sellersName}</h4>
+
 
                         </div>
 
-                        <div>
+                        <div className='grid grid-cols-1 gap-2'>
                             <h4 className="text-sm font-bold">Buy in {buyYear}</h4>
                             <h4 className="text-sm font-bold">Buying Price: ${originalPrice}</h4>
+                            <h4 className="text-sm font-bold">Location {location}</h4>
                             <h4 className="text-sm font-bold">Post Date: {postDate}</h4>
                         </div>
                     </div>
-                    <h4 className="text-sm font-bold">Seller Name: {sellersName}</h4>
 
                     <label htmlFor="booking-modal"
                         className="btn bg-red-700 btn-sm mt-3 hover:px-10"
