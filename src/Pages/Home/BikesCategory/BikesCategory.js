@@ -5,7 +5,7 @@ import BookingModal from './BookingModal';
 
 const BikesCategory = () => {
     const bikes = useLoaderData()
-    // console.log(bikes);
+    console.log(bikes);
 
 
     const [bikeInfo, setBikeInfo] = useState(null)
@@ -17,7 +17,7 @@ const BikesCategory = () => {
 
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-6'>
                 {
-                    bikes.map(bike =>
+                    bikes?.map(bike =>
                         <div className='mb-24'
                             key={bike._id}>
                             <BikesCategoryCard

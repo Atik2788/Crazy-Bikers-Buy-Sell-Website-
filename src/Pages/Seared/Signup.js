@@ -59,7 +59,6 @@ const Signup = () => {
                 // console.log(data)
                 navigate('/')
             })
-
     }
 
 

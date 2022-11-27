@@ -5,7 +5,7 @@ import CategoryCard from './CategoryCard';
 const Category = () => {
 
 
-    const { data: bikesCategories = [], refetch } = useQuery({
+    const { data: bikesCategories = [] } = useQuery({
         queryKey: ["category"],
         queryFn: async () => {
             const res = await fetch("http://localhost:5000/category")

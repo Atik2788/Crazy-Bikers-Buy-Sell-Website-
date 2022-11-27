@@ -16,7 +16,7 @@ const AllSellers = () => {
     // console.log(sellers)
 
 
-    const handleDeleteUser = (seller) =>{
+    const handleDeleteUser = (seller) => {
         // console.log(seller);
 
         fetch(`http://localhost:5000/users/${seller._id}`, {
@@ -25,13 +25,65 @@ const AllSellers = () => {
 
             }
         })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    toast(`Delete ${seller.displayName} successfully!!`)
+                    refetch()
+                }
+            })
+    }
+
+
+    const handleVerifyUser = (seller) => {
+        // console.log('verify')
+        
+        fetch(`http://localhost:5000/usersVerify/${seller._id}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify()
+        })
         .then(res => res.json())
-        .then(data => {
-            if(data.deletedCount>0){
-                toast(`Delete ${seller.displayName} successfully!!`)
+        .then(data =>{
+            if(data.acknowledged){
+                toast(`Verify seller ${seller.displayName} successfully!!`)
                 refetch()
             }
+            else{
+                toast.error(data.message)
+            }
         })
+
+
+
+
+        fetch(`http://localhost:5000/bikeVerify/${seller.email}`, {
+            method: "PUT",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify()
+        })
+        .then(res => res.json())
+        .then(data =>{
+            if(data.acknowledged){
+                // toast(`Verify seller ${seller.displayName} successfully!!`)
+                console.log(data.message);
+                refetch()
+            }
+            else{
+                toast.error(data.message)
+                console.log(data.message);
+            }
+        })
+
+
+
+
+
+
     }
 
 
@@ -58,8 +110,12 @@ const AllSellers = () => {
                                     <th>{i + 1}</th>
                                     <th>{seller.displayName}</th>
                                     <th>{seller.email}</th>
-                                    <th><button  className="btn bg-green-800 btn-xs">Verify</button></th>
-                                    <th><button onClick={() =>handleDeleteUser(seller)} className="btn bg-red-700 btn-xs">Delete</button></th>
+                                    {seller?.verify !== 'seller' ?
+                                        <th><button onClick={() => handleVerifyUser(seller)} className="btn bg-green-800 btn-xs">Verify</button></th>
+                                        :
+                                        <th><button className="btn btn-disabled btn-xs">Verify</button></th>
+                                    }
+                                    <th><button onClick={() => handleDeleteUser(seller)} className="btn bg-red-700 btn-xs">Delete</button></th>
                                 </tr>
 
                             )

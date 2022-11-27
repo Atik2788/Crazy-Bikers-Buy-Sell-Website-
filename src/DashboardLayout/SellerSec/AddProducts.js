@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const AddProducts = () => {
 
     const { user } = useContext(AuthContext)
+    // console.log(user)
     const current = new Date();
     const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
 

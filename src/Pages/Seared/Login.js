@@ -5,11 +5,13 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
     const [data, setData] = useState("");
-    const {login, googleLogIn} = useContext(AuthContext)
+    const {login, googleLogIn, user} = useContext(AuthContext)
     const [loginError, setLoginError] = useState()
     const location = useLocation();
     const navigate = useNavigate()
     const { register, handleSubmit } = useForm();
+
+    // console.log(user)
 
 
     const from = location.state?.from?.pathname || '/'
