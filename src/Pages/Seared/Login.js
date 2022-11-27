@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
     const [data, setData] = useState("");
-    const {login, googleLogIn, user} = useContext(AuthContext)
+    const {login, googleLogIn, updateUser} = useContext(AuthContext)
     const [loginError, setLoginError] = useState()
     const location = useLocation();
     const navigate = useNavigate()
@@ -37,9 +37,40 @@ const Login = () => {
         googleLogIn()
         .then(result =>{
             const user = result.user;
-            console.log(user)
+            // console.log(user)
+
+            const userInfo = {
+                displayName: user.displayName,
+                email: user.email,
+                role: 'buyer',
+            }
+            // console.log(userInfo);
+
+            updateUser(userInfo)
+            .then(() => {
+                saveUser(user.displayName, user.email, 'buyer')
+            })
+            .catch(error => console.error(error))
         })
+
         .catch(err => console.error(err))
+    }
+
+
+    const saveUser = (displayName, email, role) => {
+        const user = { displayName, email, role }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                navigate('/')
+            })
     }
 
 

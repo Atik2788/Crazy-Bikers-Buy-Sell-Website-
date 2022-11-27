@@ -17,7 +17,7 @@ const AdvertiseModal = ({ bikeInfo, setBikeInfo, refetch }) => {
 
     const handleBooking = event => {
         event.preventDefault();
-
+        refetch()
 
 
         fetch(`http://localhost:5000/bikes/${_id}`, {
@@ -29,6 +29,7 @@ const AdvertiseModal = ({ bikeInfo, setBikeInfo, refetch }) => {
         })
             .then(res => res.json())
             .then(data => {
+                refetch()
                 // console.log(data)
             })
 
