@@ -6,9 +6,7 @@ import AdvertiseModal from './AdvertiseModal';
 
 const Advertise = () => {
 
-    const { user } = useContext(AuthContext)
-    const userEmail = user?.email;
-    // console.log(userEmail);
+
 
     const [bikeInfo, setBikeInfo] = useState(null)
     // const url = ('http://localhost:5000/bi')

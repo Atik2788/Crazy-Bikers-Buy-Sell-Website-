@@ -1,17 +1,21 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Signup = () => {
-    const [data, setData] = useState("");
+    // const [data, setData] = useState("");
     const { createUser, updateUser } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('')
+
+    const location = useLocation()
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors }} = useForm();
     // console.log(errors);
+
+    const from = location.state?.from.pathname || '/'
 
 
     const handleSignup = (data) => {
@@ -68,7 +72,8 @@ const Signup = () => {
         .then(data => {
             if(data.accessToken){
                 localStorage.setItem('accessToken', data.accessToken)
-                navigate('/')
+                // navigate('/')
+                navigate(from, {replace: true}) 
             }
         })
     }

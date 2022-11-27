@@ -4,11 +4,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
-    const [data, setData] = useState("");
+    // const [data, setData] = useState("");
     const {login, googleLogIn, updateUser} = useContext(AuthContext)
     const [loginError, setLoginError] = useState()
     const location = useLocation();
     const navigate = useNavigate()
+
     const { register, handleSubmit } = useForm();
 
     // console.log(user)
@@ -23,7 +24,9 @@ const Login = () => {
         .then(result =>{
             const user = result.user;
             console.log(user);
-            navigate(from, {replace: true}) 
+
+            getUserToken(user.email)
+            // navigate(from, {replace: true}) 
         })
         .catch(err => {
             console.error(err.message)
@@ -69,8 +72,24 @@ const Login = () => {
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
-                navigate('/')
+                // navigate('/')
+
+                getUserToken(email)
             })
+    }
+
+
+
+        const getUserToken = email =>{
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+        .then(res => res.json())
+        .then(data => {
+            if(data.accessToken){
+                localStorage.setItem('accessToken', data.accessToken)
+                // navigate('/')
+                navigate(from, {replace: true}) 
+            }
+        })
     }
 
 
