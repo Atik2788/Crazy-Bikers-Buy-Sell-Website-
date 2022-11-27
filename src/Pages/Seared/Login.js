@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     // const [data, setData] = useState("");
@@ -9,6 +10,9 @@ const Login = () => {
     const [loginError, setLoginError] = useState()
     const location = useLocation();
     const navigate = useNavigate()
+
+    const [loggedEmail, setLoggedEmail] = useState('')
+    const [token] = useToken(loggedEmail)
 
     const { register, handleSubmit } = useForm();
 
@@ -18,6 +22,10 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/'
 
 
+    if (token) {
+        navigate(from, { replace: true })
+    }
+
 
     const handleLogin = (data) =>{
         login(data.email, data.password)
@@ -25,7 +33,7 @@ const Login = () => {
             const user = result.user;
             console.log(user);
 
-            getUserToken(user.email)
+            setLoggedEmail(user.email)
             // navigate(from, {replace: true}) 
         })
         .catch(err => {
@@ -70,27 +78,13 @@ const Login = () => {
             body: JSON.stringify(user)
         })
             .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                // navigate('/')
+            .then(data => {              
+                setLoggedEmail(email)
+                // navigate(from, {replace: true}) 
 
-                getUserToken(email)
             })
     }
 
-
-
-        const getUserToken = email =>{
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-        .then(res => res.json())
-        .then(data => {
-            if(data.accessToken){
-                localStorage.setItem('accessToken', data.accessToken)
-                // navigate('/')
-                navigate(from, {replace: true}) 
-            }
-        })
-    }
 
 
     return (

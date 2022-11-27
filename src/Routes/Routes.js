@@ -12,7 +12,9 @@ import Main from "../Pages/Main/Main";
 import Blog from "../Pages/Seared/Blog";
 import Login from "../Pages/Seared/Login";
 import Signup from "../Pages/Seared/Signup";
+import AdminRoutes from "./AdminRoutes";
 import PrivateRoutes from "./PrivateRoutes";
+import SellersRoutes from "./SellersRoutes";
 
 export const router = createBrowserRouter([
     {
@@ -51,24 +53,24 @@ export const router = createBrowserRouter([
         element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
         children: [
             {
-                path: '/dashboardLayout/myOrders',
+                path: '/dashboardLayout',
                 element: <MyOrders></MyOrders>
             },
             {
                 path: '/dashboardLayout/addProducts',
-                element: <AddProducts></AddProducts>
+                element: <SellersRoutes><AddProducts></AddProducts></SellersRoutes>
             },
             {
                 path: '/dashboardLayout/myproducts',
-                element: <MyProducts></MyProducts>
+                element: <SellersRoutes><MyProducts></MyProducts></SellersRoutes>
             },
             {
                 path: '/dashboardLayout/allSellers',
-                element: <AllSellers></AllSellers>
+                element: <AdminRoutes><AllSellers></AllSellers></AdminRoutes>
             },
             {
                 path: '/dashboardLayout/allBuyers',
-                element: <AllBuyers></AllBuyers>
+                element: <AdminRoutes><AllBuyers></AllBuyers></AdminRoutes>
             }
         ]
     },

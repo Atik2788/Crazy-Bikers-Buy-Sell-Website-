@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
-const AdvertiseCard = ({ bike, setBikeInfo }) => {
+const AdvertiseCard = ({ bike, setBikeInfo, }) => {
 
     const { category, buyYear, postDate, cc, conditionType,
         description, hp, img, location, mobileNumber,
@@ -13,7 +13,6 @@ const AdvertiseCard = ({ bike, setBikeInfo }) => {
             queryKey: ['userDB', email],
             queryFn: async () => {
                 const res = await fetch(`http://localhost:5000/userEmail?email=${email}`)
-                // const res = await fetch (`http://localhost:5000/userEmail?email=tom8@gmail.com`)
                 const data = await res.json()
                 refetch()
                 return data;

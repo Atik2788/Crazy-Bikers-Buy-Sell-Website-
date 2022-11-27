@@ -3,19 +3,28 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import useToken from '../../hooks/useToken';
 
 const Signup = () => {
     // const [data, setData] = useState("");
     const { createUser, updateUser } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('')
 
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail)
+
     const location = useLocation()
     const navigate = useNavigate();
 
-    const { register, handleSubmit, formState: { errors }} = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     // console.log(errors);
 
     const from = location.state?.from.pathname || '/'
+
+
+    if (token) {
+        navigate(from, { replace: true })
+    }
 
 
     const handleSignup = (data) => {
@@ -42,13 +51,13 @@ const Signup = () => {
 
             })
 
-            .catch(err =>  {
+            .catch(err => {
                 setSignUpError(err.message)
                 console.error(err)
             })
     }
 
-    
+
     const saveUser = (displayName, email, role) => {
         const user = { displayName, email, role }
         fetch('http://localhost:5000/users', {
@@ -61,21 +70,11 @@ const Signup = () => {
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
-                getUserToken(email)
+
+                setCreatedUserEmail(email)
+                // navigate(from, {replace: true}) 
+
             })
-    }
-
-
-    const getUserToken = email =>{
-        fetch(`http://localhost:5000/jwt?email=${email}`)
-        .then(res => res.json())
-        .then(data => {
-            if(data.accessToken){
-                localStorage.setItem('accessToken', data.accessToken)
-                // navigate('/')
-                navigate(from, {replace: true}) 
-            }
-        })
     }
 
 

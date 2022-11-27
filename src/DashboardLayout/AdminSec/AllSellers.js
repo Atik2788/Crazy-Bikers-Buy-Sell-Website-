@@ -1,4 +1,3 @@
-import { async } from '@firebase/util';
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
@@ -8,7 +7,11 @@ const AllSellers = () => {
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/userRole?role=seller')
+            const res = await fetch('http://localhost:5000/userRole?role=seller', {
+                headers:{
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             const data = await res.json()
             return data;
         }
@@ -19,10 +22,10 @@ const AllSellers = () => {
     const handleDeleteUser = (seller) => {
         // console.log(seller);
 
-        fetch(`http://localhost:5000/users/${seller._id}`, {
+        fetch(`http://localhost:5000/usersDelete/${seller._id}`, {
             method: 'DELETE',
             headers: {
-
+                authorization:  `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
@@ -30,6 +33,9 @@ const AllSellers = () => {
                 if (data.deletedCount > 0) {
                     toast(`Delete ${seller.displayName} successfully!!`)
                     refetch()
+                }
+                else{
+                    toast.error(data.message)
                 }
             })
     }
@@ -41,7 +47,8 @@ const AllSellers = () => {
         fetch(`http://localhost:5000/usersVerify/${seller._id}`, {
             method: "PUT",
             headers: {
-                'content-type': 'application/json'
+                // 'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify()
         })
