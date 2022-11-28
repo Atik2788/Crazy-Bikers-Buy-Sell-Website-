@@ -32,18 +32,19 @@ const Advertise = () => {
         }
     })
     // console.log(bikesData);
-
  
+    
+    
+    if (bikesData.length === 0) {
+        return <p></p>
+    }
+    
     if(loading){
         return <div className='mt-20'><Loader></Loader></div>
     }
 
 
-    if (bikesData.length === 0) {
-        return <p></p>
-    }
-
-
+    
     return (
         <div>
             <h2 className='text-red-700 text-center text-5xl font-bold mt-16 mb-10'>Advertisement </h2>
