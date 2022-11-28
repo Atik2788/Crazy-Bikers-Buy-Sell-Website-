@@ -5,10 +5,10 @@ import useSeller from '../hooks/useSeller';
 
 const SellersRoutes = ({children}) => {
     const {user, loading} = useContext(AuthContext)
-    const [isSeller, setSellerLoading] = useSeller(user?.email);
+    const [isSeller, isSellerLoading] = useSeller(user?.email);
     const location = useLocation();
 
-    if(loading || setSellerLoading){
+    if(loading || isSellerLoading){
        return <progress className="progress full" value="100" max="100"></progress>
     }
 

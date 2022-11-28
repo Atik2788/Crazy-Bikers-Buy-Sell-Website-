@@ -70,7 +70,7 @@ const BookingModal = ({ bikeInfo, setBikeInfo }) => {
                     setBikeInfo(null)
                     toast.success('Booking Confirm!!')
                     // refetch()
-                    navigate('/dashboardLayout/myOrders')
+                    navigate('/dashboardLayout')
                 }
                 else {
                     toast.error(data.message)
