@@ -75,7 +75,8 @@ const MyProducts = () => {
     return (
         <div className='mt-10'>
             <div className="overflow-x-auto w-full">
-                <table className="table w-full">
+            <p className='text-5xl mb-5 text-red-700 font-bold text-center'>My Products</p>
+                <table className="table w-full mt-5">
 
                     <thead>
                         <tr>

@@ -73,7 +73,7 @@ const AddProducts = () => {
 
 
     return (
-        <div className=' lg:my-20 my-10 px-3 lg:px-0 md:px-6 '>
+        <div className=' lg:mb-20 lg:mt-10 my-10 px-3 lg:px-0 md:px-6 '>
             <div className='lg:w-11/12 mx-auto lg:p-6 p-3 '>
                 <p className='text-5xl mb-5 text-red-700 font-bold text-center'>Add Your Product</p>
 

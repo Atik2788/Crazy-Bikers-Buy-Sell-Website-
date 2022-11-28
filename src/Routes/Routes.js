@@ -3,6 +3,7 @@ import AllBuyers from "../DashboardLayout/AdminSec/AllBuyers";
 import AllSellers from "../DashboardLayout/AdminSec/AllSellers";
 import ReportedItem from "../DashboardLayout/AdminSec/ReportedItem";
 import MyOrders from "../DashboardLayout/BuyeSec/MyOrders";
+import Dashboard from "../DashboardLayout/Dashboard";
 import DashboardLayout from "../DashboardLayout/DashboardLayout";
 import Payment from "../DashboardLayout/Payments/Payment";
 import AddProducts from "../DashboardLayout/SellerSec/AddProducts";
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
         element: <PrivateRoutes><DashboardLayout></DashboardLayout></PrivateRoutes>,
         errorElement: <DisplayError></DisplayError>,
         children: [
+            {
+                path: '/dashboardLayout',
+                element: <Dashboard></Dashboard>
+            },
             {
                 path: '/dashboardLayout/myOrders',
                 element: <MyOrders></MyOrders>
