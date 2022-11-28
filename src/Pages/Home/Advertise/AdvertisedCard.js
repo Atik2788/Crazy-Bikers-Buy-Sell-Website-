@@ -13,7 +13,7 @@ const AdvertiseCard = ({ bike, setBikeInfo }) => {
     const { data: dbUserNew = [], /* refetch */ } = useQuery({
         queryKey: ['userDB', email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/userEmail?email=${email}`)
+            const res = await fetch(`https://crazy-bikers-server.vercel.app/userEmail?email=${email}`)
             const data = await res.json()
             // refetch()
             return data;
@@ -29,7 +29,7 @@ const AdvertiseCard = ({ bike, setBikeInfo }) => {
 
         if (window.confirm("Are you want to report?")) {
 
-            fetch(`http://localhost:5000/bikesReport/${_id}`, {
+            fetch(`https://crazy-bikers-server.vercel.app/bikesReport/${_id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

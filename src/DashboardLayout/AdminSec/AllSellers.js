@@ -7,7 +7,7 @@ const AllSellers = () => {
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/userRole?role=seller', {
+            const res = await fetch('https://crazy-bikers-server.vercel.app/userRole?role=seller', {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -22,7 +22,7 @@ const AllSellers = () => {
     const handleDeleteUser = (seller) => {
         // console.log(seller);
 
-        fetch(`http://localhost:5000/usersDelete/${seller._id}`, {
+        fetch(`https://crazy-bikers-server.vercel.app/usersDelete/${seller._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -44,7 +44,7 @@ const AllSellers = () => {
     const handleVerifyUser = (seller) => {
         // console.log('verify')
 
-        fetch(`http://localhost:5000/usersVerify/${seller._id}`, {
+        fetch(`https://crazy-bikers-server.vercel.app/usersVerify/${seller._id}`, {
             method: "PUT",
             headers: {
                 // 'content-type': 'application/json',
@@ -66,7 +66,7 @@ const AllSellers = () => {
 
 
 
-        fetch(`http://localhost:5000/bikeVerify/${seller.email}`, {
+        fetch(`https://crazy-bikers-server.vercel.app/bikeVerify/${seller.email}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json'

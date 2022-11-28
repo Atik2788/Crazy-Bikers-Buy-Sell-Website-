@@ -9,8 +9,8 @@ const MyProducts = () => {
 
 
 
-    const url = `http://localhost:5000/bikesemail?email=${user?.email}`
-    // const urt = `http://localhost:5000/bookings?email=${user?.email}`
+    const url = `https://crazy-bikers-server.vercel.app/bikesemail?email=${user?.email}`
+    // const urt = `https://crazy-bikers-server.vercel.app/bookings?email=${user?.email}`
 
     const { data: bikes = [], refetch, isLoading } = useQuery({
         queryKey: ['bikes', user?.email],
@@ -29,23 +29,23 @@ const MyProducts = () => {
 
     const handleAdvertise = (id) => {
 
-        fetch(`http://localhost:5000/bikesAdvertise/${id}`, {
+        fetch(`https://crazy-bikers-server.vercel.app/bikesAdvertise/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify()
         })
-        .then(res => res.json())
-        .then(data =>{
-            if(data.acknowledged){
-                refetch()
-                toast('Add Advertise Successfully!!')
-            }
-            else{
-                toast.error(data.message)
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    refetch()
+                    toast('Add Advertise Successfully!!')
+                }
+                else {
+                    toast.error(data.message)
+                }
+            })
     }
 
 
@@ -53,20 +53,20 @@ const MyProducts = () => {
     const handleDeleteProduct = (bike) => {
         // console.log('delete')
 
-        fetch(`http://localhost:5000/bikes/${bike._id}`, {
+        fetch(`https://crazy-bikers-server.vercel.app/bikes/${bike._id}`, {
             method: 'DELETE',
             headers: {
 
             }
         })
-        .then(res=>res.json())
-        .then(data =>{
-            // console.log(data)
-            if(data.deletedCount > 0){
-                toast(`Delete ${bike.name} successfully!!`)
-                refetch();
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                if (data.deletedCount > 0) {
+                    toast(`Delete ${bike.name} successfully!!`)
+                    refetch();
+                }
+            })
     }
 
 
@@ -107,17 +107,17 @@ const MyProducts = () => {
 
                                     <th>{bike.name}</th>
                                     <th>${bike.resalePrice}</th>
-                                    { bike?.status !== 'booked' ?
-                                    <th>Available</th>
-                                    :
-                                    <th>Booked</th>
+                                    {bike?.status !== 'booked' ?
+                                        <th>Available</th>
+                                        :
+                                        <th>Booked</th>
 
                                     }
 
-                                    { bike?.status === 'advertised' || bike?.status === 'booked' ?
-                                    <th><button className="btn btn-disabled btn-xs">Advertised</button></th>
-                                    :
-                                    <th><button onClick={() => handleAdvertise(bike._id)} className="btn bg-green-700 btn-xs">Advertise</button></th>
+                                    {bike?.status === 'advertised' || bike?.status === 'booked' ?
+                                        <th><button className="btn btn-disabled btn-xs">Advertised</button></th>
+                                        :
+                                        <th><button onClick={() => handleAdvertise(bike._id)} className="btn bg-green-700 btn-xs">Advertise</button></th>
                                     }
 
                                     <th><button onClick={() => handleDeleteProduct(bike)} className="btn bg-red-700 px-4 outline-none btn-xs">X</button></th>

@@ -4,6 +4,7 @@ import { AuthContext } from '../../context/AuthProvider';
 
 import axios from 'axios'
 import Loader from '../../Routes/Loader';
+import { Link } from 'react-router-dom';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext)
@@ -12,7 +13,7 @@ const MyOrders = () => {
 
 
 
-    const url = `http://localhost:5000/bookings?email=${user?.email}`
+    const url = `https://crazy-bikers-server.vercel.app/bookings?email=${user?.email}`
 
 
     useEffect(() => {
@@ -26,9 +27,9 @@ const MyOrders = () => {
             })
     })
 
- if(loading){
-    return <Loader></Loader>
- }
+    if (loading) {
+        return <Loader></Loader>
+    }
 
 
     // const { data: bookings = [], refetch } = useQuery({
@@ -60,7 +61,7 @@ const MyOrders = () => {
                             <th>Bike Image</th>
                             <th>Bike Name</th>
                             <th>Price</th>
-                            <th>Paid/Unpaid</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
 
@@ -82,7 +83,16 @@ const MyOrders = () => {
 
                                     <th>{booking.bikeName}</th>
                                     <th>${booking.resalePrice}</th>
-                                    <th><button className="btn btn-ghost bg-green-700 text-white text-md px-4 btn-xs">Pay</button></th>
+
+                                    {!booking.paid ?
+                                        <th><Link to=
+                                        {`/dashboardLayout/payment/${booking._id}`}>
+                                            <button className="btn btn-ghost bg-green-700 text-white text-md px-4 btn-xs">Pay</button></Link></th>
+
+                                        :
+                                        <th><button className="btn btn-ghost bg-gray-600 text-white text-md px-4 btn-xs">Paid</button></th>
+                                    }
+
                                 </tr>
 
                             )

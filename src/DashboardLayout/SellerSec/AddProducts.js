@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AddProducts = () => {
 
-    const {loading, setLoading} = useContext(AuthContext)
+    const { loading, setLoading } = useContext(AuthContext)
 
     const { user } = useContext(AuthContext)
     // console.log(user)
@@ -41,7 +41,7 @@ const AddProducts = () => {
         }
 
         addBike(bikeInfo)
-        toast('User Created Successfully')
+        toast('Add Product Successfully')
         // reset.form()
         navigate('/dashboardLayout/myproducts')
 
@@ -53,7 +53,7 @@ const AddProducts = () => {
         const bikeData = bikeInfo
         // console.log(bikeData)
 
-        fetch('http://localhost:5000/bikes', {
+        fetch('https://crazy-bikers-server.vercel.app/bikes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

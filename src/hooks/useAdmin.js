@@ -5,14 +5,14 @@ const useAdmin = email => {
     const [isAdminLoading, setIsAdminLoading] = useState(true)
 
     useEffect(() => {
-        if(email){
-            fetch(`http://localhost:5000/userAdmin/${email}`)
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                setIsAdmin(data.isAdmin)
-                setIsAdminLoading(false)
-            })
+        if (email) {
+            fetch(`https://crazy-bikers-server.vercel.app/userAdmin/${email}`)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data)
+                    setIsAdmin(data.isAdmin)
+                    setIsAdminLoading(false)
+                })
         }
 
     }, [email])

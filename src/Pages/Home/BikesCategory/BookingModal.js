@@ -20,7 +20,7 @@ const BookingModal = ({ bikeInfo, setBikeInfo }) => {
 
 
 
-        fetch(`http://localhost:5000/bikes/${_id}`, {
+        fetch(`https://crazy-bikers-server.vercel.app/bikes/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -55,7 +55,7 @@ const BookingModal = ({ bikeInfo, setBikeInfo }) => {
         // console.log(booking);
 
         // post booking in database
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://crazy-bikers-server.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
