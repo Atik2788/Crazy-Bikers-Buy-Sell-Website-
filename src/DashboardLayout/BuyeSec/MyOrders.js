@@ -63,7 +63,7 @@ const MyOrders = () => {
 
                                         <th>{booking.bikeName}</th>
                                         <th>${booking.resalePrice}</th>
-                                        <th><button className="btn btn-ghost btn-xs">details</button></th>
+                                        <th><button className="btn btn-ghost bg-green-700 text-white text-md px-4 btn-xs">Pay</button></th>
                                     </tr>
 
                             )

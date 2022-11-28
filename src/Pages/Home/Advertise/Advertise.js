@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../context/AuthProvider';
+import Loader from '../../../Routes/Loader';
 import AdvertiseCard from './AdvertisedCard';
 import AdvertiseModal from './AdvertiseModal';
 
@@ -18,27 +19,29 @@ const Advertise = () => {
 
 
 
-    const { data: bikesData = [], refetch } = useQuery({
+
+    const { data: bikesData = [], /* refetch */ } = useQuery({
         queryKey: ['bikesInfo'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/bikesStatus?status=advertised')
             const data = await res.json()
-            setLoading(true)
-            refetch()
+            setLoading(false)
+
             // setBikes(true)
             return data;
         }
     })
     // console.log(bikesData);
 
-if(loading){
-    <p>Loading...</p>
-}
+ 
+    if(loading){
+        return <div className='mt-20'><Loader></Loader></div>
+    }
 
 
- if(bikesData.length === 0){
-    return <p></p>
- }
+    if (bikesData.length === 0) {
+        return <p></p>
+    }
 
 
     return (
@@ -51,8 +54,8 @@ if(loading){
                     bikesData.map(bike => <AdvertiseCard
                         key={bike._id}
                         bike={bike}
-                        refetch={refetch}
-                        setLoading={setLoading}
+                        // refetch={refetch}
+                        // setLoading={setLoading}
                         setBikeInfo={setBikeInfo}
                     ></AdvertiseCard>
                     )
@@ -64,7 +67,9 @@ if(loading){
                 <AdvertiseModal
                     bikeInfo={bikeInfo}
                     setBikeInfo={setBikeInfo}
-                    refetch={refetch}
+
+                    setLoading={setLoading}
+                // refetch={refetch}
                 ></AdvertiseModal>
 
             }
@@ -72,7 +77,7 @@ if(loading){
 
         </div>
     );
- };
+};
 
 
 export default Advertise;

@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import toast from 'react-hot-toast';
 
-const AdvertiseCard = ({ bike, setBikeInfo, }) => {
+const AdvertiseCard = ({ bike, setBikeInfo }) => {
 
     const { category, buyYear, postDate, cc, conditionType,
         description, hp, img, location, mobileNumber,

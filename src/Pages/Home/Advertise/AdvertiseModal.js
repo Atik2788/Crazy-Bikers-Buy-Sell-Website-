@@ -5,7 +5,7 @@ import { AuthContext } from '../../../context/AuthProvider';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
-const AdvertiseModal = ({ bikeInfo, setBikeInfo, refetch, setLoading }) => {
+const AdvertiseModal = ({ bikeInfo, setBikeInfo, setLoading }) => {
     const { user } = useContext(AuthContext)
     const { name, resalePrice, img, _id } = bikeInfo;
 
@@ -17,8 +17,6 @@ const AdvertiseModal = ({ bikeInfo, setBikeInfo, refetch, setLoading }) => {
 
     const handleBooking = event => {
         event.preventDefault();
-        refetch()
-
 
         fetch(`http://localhost:5000/bikes/${_id}`, {
             method: 'PUT',
@@ -29,7 +27,7 @@ const AdvertiseModal = ({ bikeInfo, setBikeInfo, refetch, setLoading }) => {
         })
             .then(res => res.json())
             .then(data => {
-                refetch()
+                // refetch()
                 // console.log(data)
             })
 
@@ -69,7 +67,7 @@ const AdvertiseModal = ({ bikeInfo, setBikeInfo, refetch, setLoading }) => {
 
                 if (data.acknowledged) {
                     setBikeInfo(null)
-                    refetch()
+                    // refetch()
                     setLoading(true)
                     // navigate('/dashboardLayout/myOrders')
                     toast.success('Booking Confirm!!')

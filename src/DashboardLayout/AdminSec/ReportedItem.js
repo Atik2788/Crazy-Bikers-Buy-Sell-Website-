@@ -15,7 +15,7 @@ const ReportedItem = () => {
             return data;
         }
     })
-    // console.log(reportedDikesData)
+    console.log(reportedDikesData)
 
 
 
@@ -87,11 +87,11 @@ const ReportedItem = () => {
 
                                 }
 
-                                {/* { bike?.status === 'advertised' || bike?.status === 'booked' ?
-                                <th><button className="btn btn-disabled btn-xs">Advertised</button></th>
+                                { bike?.status === 'advertised' || bike?.status === 'booked' ?
+                                <th><button className="btn btn-xs">Advertised</button></th>
                                 :
-                                <th><button onClick={() => handleAdvertise(bike._id)} className="btn bg-green-700 btn-xs">Advertise</button></th>
-                                } */}
+                                <th><button className="">Advertise</button></th>
+                                }
 
                                 <th><button onClick={() => handleDeleteProduct(bike)} className="btn bg-red-700 px-4 outline-none btn-xs">X</button></th>
                             </tr>
