@@ -4,8 +4,10 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../context/AuthProvider';
 
 const MyProducts = () => {
-    const { user } = useContext(AuthContext)
+    const { user, setLoading } = useContext(AuthContext)
     // console.log(user);
+
+
 
     const url = `http://localhost:5000/bikesemail?email=${user?.email}`
     // const urt = `http://localhost:5000/bookings?email=${user?.email}`
@@ -19,6 +21,7 @@ const MyProducts = () => {
                 }
             });
             const data = await res.json();
+            setLoading(false)
             return data;
         }
     })
@@ -36,8 +39,8 @@ const MyProducts = () => {
         .then(res => res.json())
         .then(data =>{
             if(data.acknowledged){
-                toast('Add Advertise Successfully!!')
                 refetch()
+                toast('Add Advertise Successfully!!')
             }
             else{
                 toast.error(data.message)

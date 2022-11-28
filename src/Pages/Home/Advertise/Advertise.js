@@ -9,22 +9,36 @@ const Advertise = () => {
 
 
     const [bikeInfo, setBikeInfo] = useState(null)
-    // const url = ('http://localhost:5000/bi')
-    const status = 'advertised'
 
 
-    const { data: bikes = [], refetch } = useQuery({
+    // const [bikes, setBikes] = useState(false)
+    // console.log(bikes)
+
+    const [loading, setLoading] = useState(true)
+
+
+
+    const { data: bikesData = [], refetch } = useQuery({
         queryKey: ['bikesInfo'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/bikesStatus?status=advertised')
             const data = await res.json()
+            setLoading(true)
             refetch()
+            // setBikes(true)
             return data;
         }
     })
-    // console.log(bikes);
+    // console.log(bikesData);
+
+if(loading){
+    <p>Loading...</p>
+}
 
 
+ if(bikesData.length === 0){
+    return <p></p>
+ }
 
 
     return (
@@ -34,9 +48,11 @@ const Advertise = () => {
 
             <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-6'>
                 {
-                    bikes.map(bike => <AdvertiseCard
+                    bikesData.map(bike => <AdvertiseCard
                         key={bike._id}
                         bike={bike}
+                        refetch={refetch}
+                        setLoading={setLoading}
                         setBikeInfo={setBikeInfo}
                     ></AdvertiseCard>
                     )
@@ -56,6 +72,7 @@ const Advertise = () => {
 
         </div>
     );
-};
+ };
+
 
 export default Advertise;

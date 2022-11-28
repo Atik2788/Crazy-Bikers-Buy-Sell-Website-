@@ -1,11 +1,35 @@
 import React from 'react';
 
+
+import toast from 'react-hot-toast';
+
 const BikesCategoryCard = ({ bike, setBikeInfo }) => {
     const { category, buyYear, postDate, cc, conditionType,
         description, hp, img, location, mobileNumber,
-        name, originalPrice, resalePrice, sellersName, yearsOfUse, status } = bike;
+        name, originalPrice, resalePrice, sellersName, yearsOfUse, status, _id, report } = bike;
 
 
+
+
+    const handleReport = () => {
+
+        if (window.confirm("Are you want to report?")) {
+
+            fetch(`http://localhost:5000/bikesReport/${_id}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    toast.success(`${name}, is reported`)
+                })
+        }
+
+
+    }
 
     return (
         <div>
@@ -37,15 +61,29 @@ const BikesCategoryCard = ({ bike, setBikeInfo }) => {
 
                     {status !== 'booked' ?
                         <label htmlFor="booking-modal"
-                            className="btn bg-red-700 btn-sm mt-3 hover:px-10"
+                            className="btn bg-blue-700 btn-sm mt-3 hover:px-10"
                             onClick={() => setBikeInfo(bike)}>Book Now
                         </label>
                         :
                         <label
-                            className="btn btn-disabled btn-sm mt-3"
-                            >Booked
+                            className="btn btn-sm mt-3"
+                        >Booked
                         </label>
                     }
+
+                    {report !== 'reported' ?
+                        <label className="btn bg-red-700 btn-sm mt-2 hover:px-10"
+                            onClick={handleReport}>Report To Admin
+                        </label>
+                        :
+                        <label
+                            className="btn btn-sm mt-3"
+                        >Reported To Admin
+                        </label>
+                    }
+
+
+
                 </div>
             </div>
 

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AddProducts = () => {
 
-    // const [loading, setLoading] = useState(true)
+    const {loading, setLoading} = useContext(AuthContext)
 
     const { user } = useContext(AuthContext)
     // console.log(user)
@@ -43,7 +43,6 @@ const AddProducts = () => {
         addBike(bikeInfo)
         toast('User Created Successfully')
         // reset.form()
-        // setLoading(false)
         navigate('/dashboardLayout/myproducts')
 
         // console.log(bikeInfo)
@@ -60,10 +59,10 @@ const AddProducts = () => {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(bikeData)
-           
         })
+        // setLoading(true)
     }
- 
+
     // if(loading){
     //     return <p>loading</p>
     // }

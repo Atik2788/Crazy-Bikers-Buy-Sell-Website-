@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import useSeller from '../hooks/useSeller';
+import Loader from './Loader';
 
 const SellersRoutes = ({children}) => {
     const {user, loading} = useContext(AuthContext)
@@ -9,7 +10,7 @@ const SellersRoutes = ({children}) => {
     const location = useLocation();
 
     if(loading || isSellerLoading){
-       return <progress className="progress full" value="100" max="100"></progress>
+       return <Loader></Loader>
     }
 
     if (user && isSeller){

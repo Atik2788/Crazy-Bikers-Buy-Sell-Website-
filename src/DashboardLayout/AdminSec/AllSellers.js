@@ -8,7 +8,7 @@ const AllSellers = () => {
         queryKey: ['sellers'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/userRole?role=seller', {
-                headers:{
+                headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             })
@@ -25,7 +25,7 @@ const AllSellers = () => {
         fetch(`http://localhost:5000/usersDelete/${seller._id}`, {
             method: 'DELETE',
             headers: {
-                authorization:  `bearer ${localStorage.getItem('accessToken')}`
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
             .then(res => res.json())
@@ -34,7 +34,7 @@ const AllSellers = () => {
                     toast(`Delete ${seller.displayName} successfully!!`)
                     refetch()
                 }
-                else{
+                else {
                     toast.error(data.message)
                 }
             })
@@ -43,7 +43,7 @@ const AllSellers = () => {
 
     const handleVerifyUser = (seller) => {
         // console.log('verify')
-        
+
         fetch(`http://localhost:5000/usersVerify/${seller._id}`, {
             method: "PUT",
             headers: {
@@ -52,16 +52,16 @@ const AllSellers = () => {
             },
             body: JSON.stringify()
         })
-        .then(res => res.json())
-        .then(data =>{
-            if(data.acknowledged){
-                toast(`Verify seller ${seller.displayName} successfully!!`)
-                refetch()
-            }
-            else{
-                toast.error(data.message)
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast(`Verify seller ${seller.displayName} successfully!!`)
+                    refetch()
+                }
+                else {
+                    toast.error(data.message)
+                }
+            })
 
 
 
@@ -73,18 +73,18 @@ const AllSellers = () => {
             },
             body: JSON.stringify()
         })
-        .then(res => res.json())
-        .then(data =>{
-            if(data.acknowledged){
-                // toast(`Verify seller ${seller.displayName} successfully!!`)
-                console.log(data.message);
-                refetch()
-            }
-            else{
-                toast.error(data.message)
-                console.log(data.message);
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    // toast(`Verify seller ${seller.displayName} successfully!!`)
+                    console.log(data.message);
+                    refetch()
+                }
+                else {
+                    toast.error(data.message)
+                    console.log(data.message);
+                }
+            })
 
 
 
@@ -96,6 +96,7 @@ const AllSellers = () => {
 
     return (
         <div className='mt-10'>
+            <h3 className='mb-10 text-center text-5xl font-bold text-red-700'>All Sellers</h3>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
 

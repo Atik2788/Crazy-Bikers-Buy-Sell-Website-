@@ -79,6 +79,9 @@ const BookingModal = ({ bikeInfo, setBikeInfo }) => {
 
     }
 
+
+
+
     return (
         <>
             <input type="checkbox" id="booking-modal" className="modal-toggle" />

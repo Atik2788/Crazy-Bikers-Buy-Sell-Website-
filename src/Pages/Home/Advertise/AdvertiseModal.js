@@ -5,7 +5,7 @@ import { AuthContext } from '../../../context/AuthProvider';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
-const AdvertiseModal = ({ bikeInfo, setBikeInfo, refetch }) => {
+const AdvertiseModal = ({ bikeInfo, setBikeInfo, refetch, setLoading }) => {
     const { user } = useContext(AuthContext)
     const { name, resalePrice, img, _id } = bikeInfo;
 
@@ -69,9 +69,10 @@ const AdvertiseModal = ({ bikeInfo, setBikeInfo, refetch }) => {
 
                 if (data.acknowledged) {
                     setBikeInfo(null)
-                    toast.success('Booking Confirm!!')
                     refetch()
+                    setLoading(true)
                     // navigate('/dashboardLayout/myOrders')
+                    toast.success('Booking Confirm!!')
                 }
                 else {
                     toast.error(data.message)

@@ -34,24 +34,25 @@ const DashboardLayout = () => {
 
                         {!isAdmin && !isSeller &&
 
-                        <li><Link to='/dashboardLayout'>My Orders</Link></li>
+                            <li className='text-red-700 text-xl font-bold'><Link to='/dashboardLayout/myOrders'>My Orders</Link></li>
 
 
-                         }
+                        }
 
 
                         {isSeller &&
                             <>
-                                <li><Link to='/dashboardLayout/addProducts'>Add Product</Link></li>
-                                <li><Link to='/dashboardLayout/myproducts'>My Products</Link></li>
+                                <li className='text-red-700 text-xl font-bold'><Link to='/dashboardLayout/addProducts'>Add Product</Link></li>
+                                <li className='text-red-700 text-xl font-bold'><Link to='/dashboardLayout/myproducts'>My Products</Link></li>
                             </>
                         }
 
 
                         {isAdmin &&
                             <>
-                                <li><Link to='/dashboardLayout/allSellers'>All Sellers</Link></li>
-                                <li><Link to='/dashboardLayout/allBuyers'>All Buyers</Link></li>
+                                <li className='text-red-700 text-xl font-bold'><Link to='/dashboardLayout/allSellers'>All Sellers</Link></li>
+                                <li className='text-red-700 text-xl font-bold'><Link to='/dashboardLayout/allBuyers'>All Buyers</Link></li>
+                                <li className='text-red-700 text-xl font-bold'><Link to='/dashboardLayout/reportedItem'>Reported Items</Link></li>
                             </>
                         }
 
