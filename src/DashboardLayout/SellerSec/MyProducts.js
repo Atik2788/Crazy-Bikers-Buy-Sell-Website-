@@ -9,8 +9,8 @@ const MyProducts = () => {
 
 
 
-    const url = `https://crazy-bikers-server.vercel.app/bikesemail?email=${user?.email}`
-    // const urt = `https://crazy-bikers-server.vercel.app/bookings?email=${user?.email}`
+    const url = `https://crazy-bikers-server-atik2788.vercel.app/bikesemail?email=${user?.email}`
+    // const urt = `https://crazy-bikers-server-atik2788.vercel.app/bookings?email=${user?.email}`
 
     const { data: bikes = [], refetch, isLoading } = useQuery({
         queryKey: ['bikes', user?.email],
@@ -29,7 +29,7 @@ const MyProducts = () => {
 
     const handleAdvertise = (id) => {
 
-        fetch(`https://crazy-bikers-server.vercel.app/bikesAdvertise/${id}`, {
+        fetch(`https://crazy-bikers-server-atik2788.vercel.app/bikesAdvertise/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -53,7 +53,7 @@ const MyProducts = () => {
     const handleDeleteProduct = (bike) => {
         // console.log('delete')
 
-        fetch(`https://crazy-bikers-server.vercel.app/bikes/${bike._id}`, {
+        fetch(`https://crazy-bikers-server-atik2788.vercel.app/bikes/${bike._id}`, {
             method: 'DELETE',
             headers: {
 

@@ -53,7 +53,7 @@ const AddProducts = () => {
         const bikeData = bikeInfo
         // console.log(bikeData)
 
-        fetch('https://crazy-bikers-server.vercel.app/bikes', {
+        fetch('https://crazy-bikers-server-atik2788.vercel.app/bikes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

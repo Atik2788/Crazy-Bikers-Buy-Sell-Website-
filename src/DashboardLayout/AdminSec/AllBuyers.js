@@ -7,7 +7,7 @@ const AllBuyers = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('https://crazy-bikers-server.vercel.app/userRole?role=buyer')
+            const res = await fetch('https://crazy-bikers-server-atik2788.vercel.app/userRole?role=buyer')
             const data = await res.json()
             return data;
         }
@@ -17,7 +17,7 @@ const AllBuyers = () => {
     const handleDeleteUser = (buyer) => {
         console.log(buyer);
 
-        fetch(`https://crazy-bikers-server.vercel.app/usersDelete/${buyer._id}`, {
+        fetch(`https://crazy-bikers-server-atik2788.vercel.app/usersDelete/${buyer._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

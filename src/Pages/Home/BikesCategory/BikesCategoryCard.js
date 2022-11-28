@@ -15,7 +15,7 @@ const BikesCategoryCard = ({ bike, setBikeInfo }) => {
 
         if (window.confirm("Are you want to report?")) {
 
-            fetch(`https://crazy-bikers-server.vercel.app/bikesReport/${_id}`, {
+            fetch(`https://crazy-bikers-server-atik2788.vercel.app/bikesReport/${_id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

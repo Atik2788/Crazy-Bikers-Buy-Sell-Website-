@@ -60,7 +60,7 @@ const Signup = () => {
 
     const saveUser = (displayName, email, role) => {
         const user = { displayName, email, role }
-        fetch('https://crazy-bikers-server.vercel.app/users', {
+        fetch('https://crazy-bikers-server-atik2788.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

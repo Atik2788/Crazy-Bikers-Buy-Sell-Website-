@@ -18,7 +18,7 @@ const AdvertiseModal = ({ bikeInfo, setBikeInfo, setLoading }) => {
     const handleBooking = event => {
         event.preventDefault();
 
-        fetch(`https://crazy-bikers-server.vercel.app/bikes/${_id}`, {
+        fetch(`https://crazy-bikers-server-atik2788.vercel.app/bikes/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -54,7 +54,7 @@ const AdvertiseModal = ({ bikeInfo, setBikeInfo, setLoading }) => {
         // console.log(booking);
 
         // post booking in database
-        fetch('https://crazy-bikers-server.vercel.app/bookings', {
+        fetch('https://crazy-bikers-server-atik2788.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

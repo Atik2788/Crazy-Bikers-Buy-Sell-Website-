@@ -8,7 +8,7 @@ const ReportedItem = () => {
     const { data: reportedDikesData = [], refetch } = useQuery({
         queryKey: ['bikesInfo'],
         queryFn: async () => {
-            const res = await fetch('https://crazy-bikers-server.vercel.app/bikesReported?report=reported')
+            const res = await fetch('https://crazy-bikers-server-atik2788.vercel.app/bikesReported?report=reported')
             const data = await res.json()
             refetch()
             // setBikes(true)
@@ -24,7 +24,7 @@ const ReportedItem = () => {
     const handleDeleteProduct = (bike) => {
         // console.log('delete')
 
-        fetch(`https://crazy-bikers-server.vercel.app/bikes/${bike._id}`, {
+        fetch(`https://crazy-bikers-server-atik2788.vercel.app/bikes/${bike._id}`, {
             method: 'DELETE',
             headers: {
 
@@ -57,13 +57,11 @@ const ReportedItem = () => {
                             <th>Bike Name</th>
                             <th>Price</th>
                             <th>Status</th>
-                            <th>Advertise</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
 
                     <tbody>
-
                         {
                             reportedDikesData?.map((bike, i) =>
                                 <tr key={bike._id}>
@@ -87,11 +85,7 @@ const ReportedItem = () => {
 
                                     }
 
-                                    {bike?.status === 'advertised' || bike?.status === 'booked' ?
-                                        <th><button className="btn btn-xs">Advertised</button></th>
-                                        :
-                                        <th><button className="">Advertise</button></th>
-                                    }
+
 
                                     <th><button onClick={() => handleDeleteProduct(bike)} className="btn bg-red-700 px-4 outline-none btn-xs">X</button></th>
                                 </tr>

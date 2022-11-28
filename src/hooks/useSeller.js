@@ -8,7 +8,7 @@ const useSeller = email => {
     const [isSellerLoading, setIsSellerLoading] = useState(true)
     useEffect(() => {
         if (email) {
-            fetch(`https://crazy-bikers-server.vercel.app/userSeller/${email}`)
+            fetch(`https://crazy-bikers-server-atik2788.vercel.app/userSeller/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log(data);

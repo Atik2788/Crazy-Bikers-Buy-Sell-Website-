@@ -5,7 +5,7 @@ const useToken = email => {
 
     useEffect(() => {
         if (email) {
-            fetch(`https://crazy-bikers-server.vercel.app/jwt?email=${email}`)
+            fetch(`https://crazy-bikers-server-atik2788.vercel.app/jwt?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.accessToken) {

@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
             {
                 path: '/bikes/:category',
                 element: <PrivateRoutes><BikesCategory></BikesCategory></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://crazy-bikers-server.vercel.app/bikes/${params.category}`)
+                loader: ({ params }) => fetch(`https://crazy-bikers-server-atik2788.vercel.app/bikes/${params.category}`)
             },
         ]
     },
@@ -84,7 +84,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboardLayout/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://crazy-bikers-server-atik2788.vercel.appbookings/${params.id}`)
             }
         ]
     },

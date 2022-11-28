@@ -23,7 +23,7 @@ const Advertise = () => {
     const { data: bikesData = [], /* refetch */ } = useQuery({
         queryKey: ['bikesInfo'],
         queryFn: async () => {
-            const res = await fetch('https://crazy-bikers-server.vercel.app/bikesStatus?status=advertised')
+            const res = await fetch('https://crazy-bikers-server-atik2788.vercel.app/bikesStatus?status=advertised')
             const data = await res.json()
             setLoading(false)
 

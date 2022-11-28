@@ -13,22 +13,22 @@ const CheckOutFrom = ({ booking }) => {
     const elements = useElements()
 
 
-        // payment 
-        const [clientSecret, setClientSecret] = useState("");
+    // payment 
+    const [clientSecret, setClientSecret] = useState("");
 
-        useEffect(() => {
-            // Create PaymentIntent as soon as the page loads
-            fetch("http://localhost:5000/create-payment-intent", {
-                method: "put",
-                headers: {
-                    "Content-Type": "application/json",
-                    authorization: `barer ${localStorage.getItem('accessToken')}`
-                },
-                body: JSON.stringify({ resalePrice }),
-            })
-                .then((res) => res.json())
-                .then((data) => setClientSecret(data.clientSecret));
-        }, [resalePrice]);
+    useEffect(() => {
+        // Create PaymentIntent as soon as the page loads
+        fetch("https://crazy-bikers-server-atik2788.vercel.appcreate-payment-intent", {
+            method: "put",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `barer ${localStorage.getItem('accessToken')}`
+            },
+            body: JSON.stringify({ resalePrice }),
+        })
+            .then((res) => res.json())
+            .then((data) => setClientSecret(data.clientSecret));
+    }, [resalePrice]);
 
 
 
@@ -81,8 +81,8 @@ const CheckOutFrom = ({ booking }) => {
                         },
                     }}
                 />
-                <button className='btn bg-red-700 btn-sm mt-5 px-10 hover:bg-blue-700' 
-                type="submit" disabled={!stripe || !clientSecret}>
+                <button className='btn bg-red-700 btn-sm mt-5 px-10 hover:bg-blue-700'
+                    type="submit" disabled={!stripe || !clientSecret}>
                     Pay
                 </button>
             </form>

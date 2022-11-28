@@ -13,7 +13,7 @@ const MyOrders = () => {
 
 
 
-    const url = `https://crazy-bikers-server.vercel.app/bookings?email=${user?.email}`
+    const url = `https://crazy-bikers-server-atik2788.vercel.app/bookings?email=${user?.email}`
 
 
     useEffect(() => {
@@ -86,7 +86,7 @@ const MyOrders = () => {
 
                                     {!booking.paid ?
                                         <th><Link to=
-                                        {`/dashboardLayout/payment/${booking._id}`}>
+                                            {`/dashboardLayout/payment/${booking._id}`}>
                                             <button className="btn btn-ghost bg-green-700 text-white text-md px-4 btn-xs">Pay</button></Link></th>
 
                                         :
