@@ -118,6 +118,7 @@ const AllSellers = () => {
                                     <th>{i + 1}</th>
                                     <th>{seller.displayName}</th>
                                     <th>{seller.email}</th>
+                                    
                                     {seller?.verify !== 'seller' ?
                                         <th><button onClick={() => handleVerifyUser(seller)} className="btn bg-green-800 btn-xs">Verify</button></th>
                                         :

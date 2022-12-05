@@ -77,7 +77,7 @@ const AdvertiseCard = ({ bike, setBikeInfo }) => {
                     {dbUserNew[0]?.verify !== 'seller' ?
                         <h4 className="text-sm font-bold ">Seller Name: {bike.sellersName}</h4>
                         :
-                        <h4 className="text-sm font-bold mt-3">Seller Name: {bike.sellersName} <span className='bg-green-700 px-2 py-1 rounded-full text-white'>&#x2714;</span>	</h4>
+                        <h4 className="text-sm font-bold mt-3">Seller Name: {bike.sellersName} <span className='bg-green-700 px-2 py-1 rounded-full text-white'>&#x2714;</span></h4>
                     }
 
                     {status !== 'booked' ?

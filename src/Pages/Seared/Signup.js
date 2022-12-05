@@ -73,7 +73,6 @@ const Signup = () => {
 
                 setCreatedUserEmail(email)
                 // navigate(from, {replace: true}) 
-
             })
     }
 

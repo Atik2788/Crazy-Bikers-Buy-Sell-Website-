@@ -6,9 +6,7 @@ const CheckOutFrom = ({ booking }) => {
     const { resalePrice } = booking;
     // console.log(resalePrice)
 
-
     const [cardError, setCardError] = useState('')
-
     const stripe = useStripe();
     const elements = useElements()
 
@@ -18,8 +16,8 @@ const CheckOutFrom = ({ booking }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://crazy-bikers-server-atik2788.vercel.appcreate-payment-intent", {
-            method: "put",
+        fetch("http://localhost:5000/create-payment-intent", {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 authorization: `barer ${localStorage.getItem('accessToken')}`
